@@ -92,7 +92,7 @@ export default function Home() {
 
               setStats({
                 members: Math.floor(easeProgress * 118),
-                hours: Math.floor(easeProgress * 24),
+                hours: Math.floor(easeProgress * 16),
                 spaces: Math.floor(easeProgress * 3),
                 wifi: Math.floor(easeProgress * 100),
               });
@@ -232,7 +232,7 @@ export default function Home() {
             </h1>
             
             <p className="text-lg sm:text-2xl text-white/90 font-light leading-relaxed max-w-xl">
-              Un coworking moderne, calme et inspirant — ouvert 24h/24 pour libérer votre créativité et booster votre concentration.
+              Un coworking moderne, calme et inspirant — ouvert 16h/24h (de 8h à 00h) pour libérer votre créativité et booster votre concentration.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-5 mt-4">
@@ -408,9 +408,9 @@ export default function Home() {
           {/* Row 2 */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-24 pb-8">
             <div className="order-2 lg:order-1">
-              <h3 className="font-display text-4xl text-navy mb-6">Ouvert 7j/7, 24h/24</h3>
+              <h3 className="font-display text-4xl text-navy mb-6">Ouvert 7j/7, 16h/24</h3>
               <div className="w-12 h-1 bg-gold mb-6 rounded-full" />
-              <p className="text-xl text-navy/80 font-light mb-8">Votre inspiration ne connaît pas d'horaires. C'est pourquoi nos portes vous sont ouvertes jour et nuit, pour vous offrir une flexibilité totale.</p>
+              <p className="text-xl text-navy/80 font-light mb-8">Votre inspiration a besoin du bon cadre. C'est pourquoi nos portes vous sont ouvertes de 8h à 00h, pour vous offrir une large plage horaire de productivité.</p>
               <ul className="space-y-4">
                 <li className="flex items-center gap-4 text-lg text-gray-700">
                   <CheckCircle className="text-teal flex-shrink-0" size={24} /> Accès sécurisé par badge
@@ -832,7 +832,7 @@ export default function Home() {
                     <Clock className="text-gold flex-shrink-0" size={32} />
                     <div>
                       <h4 className="font-bold text-navy text-xl mb-1">Horaires</h4>
-                      <p className="text-teal font-semibold">Toujours ouvert (24h/24, 7j/7)</p>
+                      <p className="text-teal font-semibold">8h à 00h (16h/24h, 7j/7)</p>
                     </div>
                  </div>
 
@@ -859,33 +859,52 @@ export default function Home() {
             {/* Decor ring */}
             <div className="absolute -top-[250px] -right-[150px] w-[500px] h-[500px] rounded-full border-[60px] border-white/5 blur-xl pointer-events-none" />
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-               <div>
-                  <h2 className="font-display text-4xl sm:text-5xl text-white mb-6">Prêt à rejoindre Smart Study Space?</h2>
-                  <p className="text-white/80 text-xl font-light mb-10">Remplissez le formulaire, ou contactez-nous directement sur WhatsApp pour réserver votre place.</p>
-                  <a href="https://wa.me/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-3 bg-gold hover:bg-yellow-500 text-navy px-8 py-4 rounded-full font-bold transition shadow-lg text-lg">
-                     <WhatsappIcon className="w-6 h-6" /> Discuter via WhatsApp
-                  </a>
+            <div className="flex flex-col lg:flex-row gap-16 items-center relative z-10">
+               <div className="lg:w-1/2">
+                  <h2 className="font-display text-4xl sm:text-6xl text-white mb-6 leading-tight font-bold">Rejoignez-nous <br /> dès <span className="text-gold">aujourd'hui</span></h2>
+                  <p className="text-white/80 text-xl font-light mb-10 leading-relaxed">
+                    Envie de découvrir l'espace ou de réserver votre place ? <br />
+                    Contactez-nous directement. Nous sommes réactifs !
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row gap-6">
+                    <a href="https://wa.me/" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 bg-gold hover:bg-yellow-500 text-navy px-10 py-5 rounded-2xl font-bold transition shadow-xl text-lg hover:-translate-y-1">
+                       <WhatsappIcon size={28} /> WhatsApp
+                    </a>
+                    <a href="https://instagram.com/smart.study.tn" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 px-10 py-5 rounded-2xl font-bold transition shadow-lg text-lg hover:-translate-y-1">
+                       <Instagram size={28} /> Instagram
+                    </a>
+                  </div>
                </div>
 
-               <div className="bg-white rounded-3xl p-8 shadow-xl">
-                  <form onSubmit={(e) => { e.preventDefault(); alert("C'est une démo. Utilisez Whatsapp SVP !"); }}>
-                     <div className="mb-6">
-                        <label htmlFor="name" className="block text-navy font-semibold mb-2">Nom complet</label>
-                        <input type="text" id="name" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal transition" placeholder="Votre nom" required />
-                     </div>
-                     <div className="mb-6">
-                        <label htmlFor="email" className="block text-navy font-semibold mb-2">Email</label>
-                        <input type="email" id="email" className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal transition" placeholder="votre@email.com" required />
-                     </div>
-                     <div className="mb-6">
-                        <label htmlFor="message" className="block text-navy font-semibold mb-2">Message</label>
-                        <textarea id="message" rows={4} className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal/30 focus:border-teal transition" placeholder="Comment pouvons-nous aider?" required></textarea>
-                     </div>
-                     <button type="submit" className="w-full bg-teal hover:bg-teal/90 text-white font-bold py-4 rounded-xl transition shadow-md">
-                        Envoyer le message
-                     </button>
-                  </form>
+               <div className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+                  <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[2rem] hover:bg-white/10 transition-all group">
+                    <div className="w-14 h-14 bg-gold rounded-2xl flex items-center justify-center text-navy mb-6 group-hover:scale-110 transition-transform">
+                      <WhatsappIcon size={32} />
+                    </div>
+                    <h4 className="text-white font-bold text-xl mb-2">WhatsApp Fast Track</h4>
+                    <p className="text-white/60 text-sm italic">Réponse en moins de 15 minutes</p>
+                  </div>
+
+                  <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[2rem] hover:bg-white/10 transition-all group">
+                    <div className="w-14 h-14 bg-teal rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
+                      <MapPin size={32} />
+                    </div>
+                    <h4 className="text-white font-bold text-xl mb-2">Visite Directe</h4>
+                    <p className="text-white/60 text-sm italic">Passer nous voir à Monastir</p>
+                  </div>
+
+                  <div className="bg-white/5 backdrop-blur-md border border-white/10 p-8 rounded-[2rem] hover:bg-white/10 transition-all group sm:col-span-2">
+                    <div className="flex items-center gap-6">
+                      <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-gold group-hover:scale-110 transition-transform">
+                        <Star size={32} fill="currentColor" />
+                      </div>
+                      <div>
+                        <h4 className="text-white font-bold text-xl mb-1">Pas d'engagement requis</h4>
+                        <p className="text-white/60 text-sm">Venez tester une heure gratuitement !</p>
+                      </div>
+                    </div>
+                  </div>
                </div>
             </div>
          </div>
