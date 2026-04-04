@@ -17,6 +17,7 @@ import {
   X,
   Navigation,
   Coffee,
+  Plus,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -276,51 +277,102 @@ export default function Home() {
       </section>
 
       {/* 4. Video Section */}
-      <section className="w-full bg-white py-24 reveal">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="font-display text-4xl sm:text-5xl text-navy mb-4">À l'intérieur de Smart Study</h2>
-            <div className="w-16 h-1 bg-gold mx-auto mb-6 rounded-full" />
-            <p className="text-lg text-gray-600">Découvrez une atmosphère conçue pour votre concentration absolue et votre réussite.</p>
-          </div>
-          
-          <div className="relative aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl bg-navy transition-all duration-500 border-8 border-cream">
-            {!isPlaying ? (
-              <div 
-                className="absolute inset-0 cursor-pointer group"
-                onClick={() => setIsPlaying(true)}
-              >
-                <Image
-                  src="/assets/video-thumb.png"
-                  alt="Visionner la vidéo Smart Study"
-                  fill
-                  className="object-cover opacity-80 transition-transform duration-1000 group-hover:scale-105 group-hover:opacity-60"
-                  unoptimized
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-teal rounded-full animate-ping opacity-75" />
-                    <div className="relative w-28 h-28 bg-teal rounded-full flex items-center justify-center text-white transition-all group-hover:scale-110 shadow-2xl">
-                      <Play size={44} fill="currentColor" className="ml-2" />
-                    </div>
+      <section className="w-full bg-cream/30 py-32 overflow-hidden reveal">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            
+            {/* Left Column: Animated Text Storytelling */}
+            <div className="flex flex-col gap-8 order-2 lg:order-1 text-center lg:text-left items-center lg:items-start">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navy text-gold font-bold text-[10px] w-fit tracking-[0.2em] uppercase">
+                <span className="w-2 h-2 bg-teal rounded-full animate-pulse" />
+                Visez l'excellence
+              </div>
+              
+              <h2 className="font-display text-5xl sm:text-7xl text-navy leading-[1.1]">
+                Plongez dans <br />
+                <span className="text-teal italic">l'expérience</span> <br />
+                Smart Study
+              </h2>
+              
+              <div className="w-20 h-1.5 bg-gold rounded-full" />
+              
+              <p className="text-xl text-navy/70 font-light leading-relaxed max-w-lg">
+                Découvrez un espace où chaque détail a été conçu pour votre productivité. Du calme absolu au café à volonté, vivez une journée type en vidéo.
+              </p>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-4 w-full">
+                <div className="flex items-center gap-4 group justify-center lg:justify-start">
+                  <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-teal shadow-md group-hover:bg-teal group-hover:text-white transition-all">
+                    <CheckCircle size={24} />
                   </div>
+                  <span className="font-bold text-navy">Design Premium</span>
                 </div>
-                <div className="absolute bottom-10 left-10 glass-dark px-6 py-3 rounded-full text-white font-bold text-sm flex items-center gap-3">
-                  <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                  CLIQUER POUR LIRE
+                <div className="flex items-center gap-4 group justify-center lg:justify-start">
+                  <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center text-teal shadow-md group-hover:bg-teal group-hover:text-white transition-all">
+                    <CheckCircle size={24} />
+                  </div>
+                  <span className="font-bold text-navy">Smart Community</span>
                 </div>
               </div>
-            ) : (
-              <video 
-                src="/assets/Smart Study Coworking SpaceYour daily space to work better. ✨Book your spot. 📍💻📍 LOCATION- En.mp4" 
-                controls 
-                autoPlay 
-                className="w-full h-full object-cover bg-black"
-                onEnded={() => setIsPlaying(false)}
-              >
-                Votre navigateur ne supporte pas la lecture de vidéos.
-              </video>
-            )}
+            </div>
+
+            {/* Right Column: Larger Cinematic Showcase */}
+            <div className="relative order-1 lg:order-2 flex justify-center lg:justify-end w-full">
+              <div className="relative aspect-[4/3] w-full max-w-[720px] rounded-[3.5rem] overflow-hidden shadow-[0_60px_120px_-30px_rgba(0,0,0,0.4)] bg-navy group/vid transition-all duration-500">
+                {!isPlaying ? (
+                  <div 
+                    className="absolute inset-0 z-10 cursor-pointer group"
+                    onClick={() => setIsPlaying(true)}
+                  >
+                    <Image
+                      src="/assets/video-thumb.png"
+                      alt="Story Preview"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110 opacity-90"
+                      unoptimized
+                    />
+                    <div className="absolute inset-0 bg-navy/20 group-hover:bg-navy/0 transition-all" />
+                    
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                       <div className="relative">
+                          <div className="absolute inset-0 bg-white rounded-full animate-ping opacity-20 scale-150" />
+                          <div className="relative w-28 h-28 bg-white text-navy rounded-full flex items-center justify-center shadow-2xl transition-all group-hover:scale-110 group-hover:bg-gold group-hover:text-white">
+                             <Play size={44} fill="currentColor" className="ml-1.5" />
+                          </div>
+                       </div>
+                    </div>
+                    
+                    <div className="absolute bottom-10 left-0 right-0 text-center text-white/50 font-bold text-[10px] tracking-[0.4em] uppercase">
+                       Cliquer pour lire
+                    </div>
+                  </div>
+                ) : (
+                  <div className="w-full h-full bg-black animate-fade-in relative">
+                    <video 
+                      src="/assets/SmartStudyVideo.mp4" 
+                      controls 
+                      autoPlay 
+                      className="w-full h-full object-cover"
+                      onEnded={() => setIsPlaying(false)}
+                    >
+                      Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                    <button 
+                      onClick={() => setIsPlaying(false)}
+                      className="absolute top-6 right-6 z-20 bg-black/40 hover:bg-black/60 backdrop-blur-md w-12 h-12 rounded-full flex items-center justify-center text-white transition-all border border-white/10"
+                    >
+                      <X size={24} />
+                    </button>
+                  </div>
+                )}
+              </div>
+              
+              {/* Subtle background glow elements */}
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-gold/5 rounded-full blur-3xl -z-10" />
+              <div className="absolute -top-10 -left-10 w-48 h-48 bg-teal/5 rounded-full blur-3xl -z-10" />
+            </div>
+
           </div>
         </div>
       </section>
@@ -484,134 +536,101 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6.7. Gourmet Menu Section */}
-      <section className="w-full bg-white py-24 reveal">
+      <section id="menu" className="w-full bg-white py-32 reveal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-20 animate-fade-in">
-            <h2 className="font-display text-4xl sm:text-5xl text-navy mb-4">La Carte Gourmande</h2>
-            <div className="w-16 h-1 bg-gold mx-auto mb-6 rounded-full" />
-            <p className="text-lg text-gray-600 font-light">
-              Des saveurs pour accompagner vos idées. <br /> 
-              Profitez d'une sélection de boissons et de douceurs soigneusement choisies.
+          <div className="text-center max-w-3xl mx-auto mb-24">
+            <span className="text-teal font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Saveurs & Douceurs</span>
+            <h2 className="font-display text-4xl sm:text-6xl text-navy mb-8">La Carte Gourmande</h2>
+            <div className="w-24 h-1 bg-gold mx-auto mb-8 rounded-full" />
+            <p className="text-xl text-navy/60 leading-relaxed font-light">
+              Une sélection raffinée de boissons et de snacks pour accompagner vos sessions de travail. 
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-            {/* Boissons Chaudes Category */}
-            <div className="space-y-8">
-              <div className="flex items-center gap-3 border-b border-cream pb-4">
-                <Coffee className="text-teal" size={24} />
-                <h3 className="font-display text-2xl text-navy font-semibold">Les Incontournables</h3>
+          {/* Category: Hot Drinks */}
+          <div className="mb-28">
+            <div className="flex items-center gap-4 mb-12 border-b border-gray-100 pb-8">
+              <div className="w-12 h-12 bg-navy rounded-2xl flex items-center justify-center text-gold shadow-lg">
+                <Coffee size={24} />
+              </div>
+              <h3 className="font-display text-3xl text-navy font-bold">Les Incontournables</h3>
+            </div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-8">
+              {[
+                { name: "Americano", price: "2.500 / 3.000" },
+                { name: "Cappuccino", price: "3.000 / 3.500", bestseller: true },
+                { name: "Cappuccino Plus", price: "3.500 / 4.000" },
+                { name: "Espresso", price: "2.200 / 2.700" },
+                { name: "Café Crème", price: "2.800 / 3.300" },
+                { name: "Café au Chocolat", price: "3.000 / 3.500" },
+                { name: "Latte Macchiato", price: "3.500 / 4.000" },
+                { name: "Double Espresso", price: "3.000 / 3.500" },
+                { name: "Chocolat Chaud (Lait)", price: "3.500 / 4.000" },
+                { name: "Chocolat Chaud (Sans Lait)", price: "3.300 / 3.800" },
+                { name: "Golden Coffee", price: "2.200" },
+                { name: "Thé Kyufi", price: "1.800" }
+              ].map((item, idx) => (
+                <div key={idx} className="flex justify-between items-baseline group border-b border-gray-50 pb-4 transition-all hover:pl-2">
+                  <div className="flex items-center gap-3">
+                    <span className="text-lg font-medium text-navy group-hover:text-teal transition-colors">{item.name}</span>
+                    {item.bestseller && (
+                      <span className="text-[10px] bg-gold/20 text-gold font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter">Bestseller</span>
+                    )}
+                  </div>
+                  <div className="flex-grow border-b border-dotted border-gray-300 mx-4 opacity-50" />
+                  <span className="text-teal font-bold font-display whitespace-nowrap">{item.price} <span className="text-[10px] uppercase opacity-60">DT</span></span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            {/* Category: Snacks */}
+            <div>
+              <div className="flex items-center gap-4 mb-10 border-b border-gray-100 pb-8">
+                <div className="w-12 h-12 bg-gold/10 rounded-2xl flex items-center justify-center text-gold shadow-sm">
+                  <Star size={24} />
+                </div>
+                <h3 className="font-display text-3xl text-navy font-bold">Les Douceurs</h3>
               </div>
               <div className="space-y-6">
                 {[
-                  { name: "Americano", price: "2.5 / 3.0", soon: false },
-                  { name: "Cappuccino", price: "3.0 / 3.5", soon: false },
-                  { name: "Cappuccino Plus", price: "3.5 / 4.0", soon: true },
-                  { name: "Espresso", price: "2.2 / 2.7", soon: false },
-                  { name: "Café Crème", price: "2.8 / 3.3", soon: true },
-                  { name: "Café au Chocolat", price: "3.0 / 3.5", soon: false },
-                  { name: "Latte Macchiato", price: "3.5 / 4.0", soon: true },
-                  { name: "Chocolat Chaud (Milk/Soya)", price: "3.3 / 4.0", soon: true },
-                  { name: "Double Espresso", price: "3.0 / 3.5", soon: false },
-                  { name: "Golden Coffee", price: "2.2", soon: true },
-                  { name: "Thé Kyufi", price: "1.8", soon: true },
+                  { name: "Croissant Snapy", price: "1.500" },
+                  { name: "Browniz", price: "1.200" },
+                  { name: "Tigato", price: "2.200" },
+                  { name: "D'croc", price: "2.200" }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-start group">
-                    <div className="flex flex-col gap-1">
-                      <span className="text-navy font-medium text-lg leading-tight transition-colors group-hover:text-teal">{item.name}</span>
-                      {item.soon && (
-                        <span className="text-[10px] uppercase tracking-widest font-bold bg-red-50 text-red-600 px-2 py-0.5 rounded-full w-fit">
-                          Bientôt disponible
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex flex-col items-end gap-1">
-                      <span className="text-navy/70 font-semibold">{item.price} <span className="text-[10px] text-gray-400">DT</span></span>
-                      <div className="w-4 h-0.5 bg-cream/50 transition-all group-hover:w-8 group-hover:bg-teal/30" />
-                    </div>
+                  <div key={idx} className="flex justify-between items-baseline group border-b border-gray-50 pb-4 transition-all hover:pl-2">
+                    <span className="text-lg font-medium text-navy group-hover:text-gold transition-colors">{item.name}</span>
+                    <div className="flex-grow border-b border-dotted border-gray-300 mx-4 opacity-50" />
+                    <span className="text-teal font-bold font-display whitespace-nowrap">{item.price} <span className="text-[10px] uppercase opacity-60">DT</span></span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Snacks Category */}
-            <div className="space-y-8">
-              <div className="flex items-center gap-3 border-b border-cream pb-4">
-                <Users className="text-teal" size={24} />
-                <h3 className="font-display text-2xl text-navy font-semibold">Les Douceurs</h3>
+            {/* Category: Refreshments */}
+            <div>
+              <div className="flex items-center gap-4 mb-10 border-b border-gray-100 pb-8">
+                <div className="w-12 h-12 bg-teal/10 rounded-2xl flex items-center justify-center text-teal shadow-sm">
+                  <Navigation size={24} />
+                </div>
+                <h3 className="font-display text-3xl text-navy font-bold">Rafraîchissements</h3>
               </div>
               <div className="space-y-6">
                 {[
-                  { name: "Croissant Snapy", price: "1.5", soon: false },
-                  { name: "Browniz", price: "1.2", soon: false },
-                  { name: "Tigato", price: "2.2", soon: false },
-                  { name: "D'croc", price: "2.2", soon: false },
+                  { name: "Eau Safia 1.5L", price: "1.500" },
+                  { name: "Eau Safia 0.5L", price: "0.800" },
+                  { name: "Jus Oh!", price: "1.800" },
+                  { name: "Tropico", price: "1.200" }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-start group">
-                    <div className="flex flex-col gap-1">
-                      <span className="text-navy font-medium text-lg leading-tight transition-colors group-hover:text-teal">{item.name}</span>
-                      {item.soon && (
-                        <span className="text-[10px] uppercase tracking-widest font-bold bg-red-50 text-red-600 px-2 py-0.5 rounded-full w-fit">
-                          Bientôt disponible
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex flex-col items-end gap-1">
-                      <span className="text-navy/70 font-semibold">{item.price} <span className="text-[10px] text-gray-400">DT</span></span>
-                      <div className="w-4 h-0.5 bg-cream/50 transition-all group-hover:w-8 group-hover:bg-teal/30" />
-                    </div>
+                  <div key={idx} className="flex justify-between items-baseline group border-b border-gray-50 pb-4 transition-all hover:pl-2">
+                    <span className="text-lg font-medium text-navy group-hover:text-teal transition-colors">{item.name}</span>
+                    <div className="flex-grow border-b border-dotted border-gray-300 mx-4 opacity-50" />
+                    <span className="text-teal font-bold font-display whitespace-nowrap">{item.price} <span className="text-[10px] uppercase opacity-60">DT</span></span>
                   </div>
                 ))}
-                
-                {/* Visual Accent */}
-                <div className="mt-12 p-6 bg-cream/30 rounded-3xl border border-cream/50 text-center">
-                  <p className="text-sm italic text-gray-500">Accompagnements parfaits pour une séance de travail productive ✨</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Cold Category */}
-            <div className="space-y-8">
-              <div className="flex items-center gap-3 border-b border-cream pb-4">
-                <Navigation className="text-teal" size={24} />
-                <h3 className="font-display text-2xl text-navy font-semibold">Rafraîchissements</h3>
-              </div>
-              <div className="space-y-6">
-                {[
-                  { name: "Eau Minérale 1.5L", price: "1.5", soon: false },
-                  { name: "Eau Minérale 0.5L", price: "0.8", soon: false },
-                  { name: "Jus Oh! (Pêche)", price: "1.8", soon: false },
-                  { name: "Tropico", price: "1.2", soon: false },
-                ].map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-start group">
-                    <div className="flex flex-col gap-1">
-                      <span className="text-navy font-medium text-lg leading-tight transition-colors group-hover:text-teal">{item.name}</span>
-                      {item.soon && (
-                        <span className="text-[10px] uppercase tracking-widest font-bold bg-red-50 text-red-600 px-2 py-0.5 rounded-full w-fit">
-                          Bientôt disponible
-                        </span>
-                      )}
-                    </div>
-                    <div className="flex flex-col items-end gap-1">
-                      <span className="text-navy/70 font-semibold">{item.price} <span className="text-[10px] text-gray-400">DT</span></span>
-                      <div className="w-4 h-0.5 bg-cream/50 transition-all group-hover:w-8 group-hover:bg-teal/30" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              <div className="relative h-48 rounded-3xl shadow-xl overflow-hidden mt-8 hidden lg:block group">
-                <Image 
-                  src="/assets/coffee-space.png" 
-                  alt="Ambiance menu" 
-                  fill 
-                  className="object-cover opacity-80 transition-transform duration-1000 group-hover:scale-110" 
-                  unoptimized 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent flex items-end p-6">
-                   <p className="text-white text-xs font-semibold tracking-wide">SMART STUDY GOURMET CORNER</p>
-                </div>
               </div>
             </div>
           </div>
@@ -626,7 +645,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <h2 className="font-display text-4xl sm:text-6xl text-white mb-20 tracking-tight">Vivez l'expérience <span className="text-gold italic">Smart Study</span></h2>
           
-          <div className="relative w-full lg:w-4/5 mx-auto rounded-[3rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.6)] aspect-[21/9] bg-black group border border-white/5">
+          <div className="relative w-full lg:w-4/5 mx-auto rounded-[3rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.6)] aspect-[14/16] sm:aspect-[21/9] bg-black group border border-white/5">
             <Image 
               src="/assets/community-reel.png" 
               alt="Reel Community" 
@@ -635,15 +654,18 @@ export default function Home() {
               unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-navy/20 to-transparent" />
-            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-               <h3 className="font-display text-3xl sm:text-5xl text-white mb-10 text-shadow-md font-light">Une communauté <br /> qui vous pousse <span className="font-bold underline decoration-gold underline-offset-8">vers le haut</span></h3>
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 sm:p-10 text-center">
+               <h3 className="font-display text-4xl sm:text-5xl text-white mb-10 text-shadow-md font-light leading-tight">
+                 Une communauté <br /> qui vous pousse <br className="sm:hidden" />
+                 <span className="font-bold underline decoration-gold underline-offset-8">vers le haut</span>
+               </h3>
                <a 
                  href="https://instagram.com/smart.study.tn" 
                  target="_blank" 
                  rel="noreferrer"
-                 className="inline-flex items-center gap-4 bg-white text-navy hover:bg-gold hover:text-white px-10 py-5 rounded-full font-bold transition-all shadow-2xl hover:-translate-y-1"
+                 className="inline-flex items-center gap-3 bg-white text-navy hover:bg-gold hover:text-white px-6 py-4 sm:px-10 sm:py-5 rounded-full font-bold transition-all shadow-2xl hover:-translate-y-1 text-sm sm:text-base whitespace-nowrap"
                >
-                 <Instagram size={28} /> Suivre sur Instagram
+                 <Instagram size={22} className="sm:w-7 sm:h-7" /> Suivre sur Instagram
                </a>
             </div>
           </div>
@@ -665,7 +687,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
               {/* Plan 1 */}
-              <div className="bg-cream/40 p-10 rounded-[2.5rem] border border-cream hover:border-gold transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 group flex flex-col">
+              <div className="bg-cream/40 p-10 rounded-[2.5rem] border border-cream hover:border-gold transition-all duration-500 hover:shadow-[0_40px_100px_-15px_rgba(0,0,0,0.2)] hover:-translate-y-4 group flex flex-col">
                  <div className="mb-10">
                     <h3 className="font-display text-3xl text-navy mb-2 font-light">Pass Heure</h3>
                     <p className="text-gray-500 text-sm">Flexibilité maximale</p>
@@ -692,7 +714,7 @@ export default function Home() {
               </div>
 
               {/* Plan 2 - Middle */}
-              <div className="bg-cream/40 p-10 rounded-[2.5rem] border border-cream hover:border-gold transition-all duration-500 hover:shadow-2xl hover:-translate-y-3 group flex flex-col">
+              <div className="bg-cream/40 p-10 rounded-[2.5rem] border border-cream hover:border-gold transition-all duration-500 hover:shadow-[0_40px_100px_-15px_rgba(0,0,0,0.2)] hover:-translate-y-4 group flex flex-col">
                  <div className="mb-10">
                     <h3 className="font-display text-3xl text-navy mb-2 font-light">Pass Journée</h3>
                     <p className="text-gray-500 text-sm">Productivité intense</p>
@@ -719,7 +741,7 @@ export default function Home() {
               </div>
 
               {/* Plan 3 - Featured Monthly */}
-              <div className="bg-navy p-10 rounded-[2.5rem] relative overflow-hidden shadow-2xl hover:-translate-y-3 transition-all duration-500 flex flex-col scale-105 border-4 border-gold">
+              <div className="bg-navy p-10 rounded-[2.5rem] relative overflow-hidden shadow-2xl hover:shadow-[0_40px_100px_-15px_rgba(0,0,0,0.2)] hover:-translate-y-4 transition-all duration-500 flex flex-col scale-105 border-4 border-gold">
                  <div className="absolute top-0 right-0 bg-gold text-navy font-bold text-xs py-2 px-8 uppercase rotate-45 transform translate-x-10 translate-y-4">Populaire</div>
                  <div className="mb-10">
                     <h3 className="font-display text-3xl text-white mb-2">Abonnement Mensuel</h3>
@@ -752,53 +774,112 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. Testimonials */}
-      <section id="temoignages" className="w-full bg-cream py-24 reveal">
+      {/* 8. Testimonials - Real Google Reviews Slider */}
+      <section id="temoignages" className="w-full bg-white py-32 reveal overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="font-display text-4xl sm:text-5xl text-navy mb-4">Ils nous font confiance</h2>
-            <div className="w-16 h-1 bg-gold mx-auto mb-6 rounded-full" />
-            <p className="text-lg text-gray-600">Ce que nos membres disent de leur expérience chez Smart Study Space.</p>
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="flex items-center justify-center gap-2 mb-6 text-navy/40 font-bold uppercase tracking-[0.3em] text-[10px]">
+              <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google" width={60} height={20} className="opacity-70" />
+              <span>Reviews</span>
+            </div>
+            <h2 className="font-display text-4xl sm:text-6xl text-navy mb-6 leading-tight">Ils nous font confiance</h2>
+            <div className="flex items-center justify-center gap-4 text-gold mb-8">
+              <div className="flex gap-1">
+                {[1,2,3,4,5].map(i => <Star key={i} size={24} fill="currentColor" />)}
+              </div>
+              <span className="text-navy font-bold text-lg">5.0 <span className="text-navy/40 font-normal">/ 5</span></span>
+            </div>
+            <p className="text-xl text-navy/60 font-light max-w-xl mx-auto">Découvrez pourquoi Smart Study est l'espace de coworking le mieux noté de Monastir.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-10 rounded-3xl shadow-sm text-center">
-               <div className="flex justify-center gap-1 text-gold mb-6">
-                 {[1,2,3,4,5].map(i => <Star key={i} size={20} fill="currentColor" />)}
-               </div>
-               <Quote className="mx-auto text-cream w-16 h-16 -mt-12 mb-4" fill="currentColor" />
-               <p className="text-gray-700 italic mb-8 leading-relaxed">"L'endroit parfait pour préparer mes examens de fin d'année. L'atmosphère est incroyablement calme et le café à volonté est un gros plus !"</p>
-               <div className="flex flex-col items-center">
-                 <div className="w-16 h-16 rounded-full overflow-hidden mb-4 bg-teal text-white flex items-center justify-center font-display text-2xl font-bold">A</div>
-                 <h4 className="font-semibold text-navy">Ahmed B.</h4>
-                 <span className="text-sm text-gray-500">Étudiant en Médecine</span>
-               </div>
-            </div>
-
-            <div className="bg-white p-10 rounded-3xl shadow-sm text-center">
-               <div className="flex justify-center gap-1 text-gold mb-6">
-                 {[1,2,3,4,5].map(i => <Star key={i} size={20} fill="currentColor" />)}
-               </div>
-               <Quote className="mx-auto text-cream w-16 h-16 -mt-12 mb-4" fill="currentColor" />
-               <p className="text-gray-700 italic mb-8 leading-relaxed">"En tant que freelance, j'ai besoin d'un espace fiable pour travailler. La connexion WiFi ici est irréprochable et j'ai fait de supers rencontres."</p>
-               <div className="flex flex-col items-center">
-                 <div className="w-16 h-16 rounded-full overflow-hidden mb-4 bg-gold text-white flex items-center justify-center font-display text-2xl font-bold">S</div>
-                 <h4 className="font-semibold text-navy">Sarah K.</h4>
-                 <span className="text-sm text-gray-500">Graphiste Freelance</span>
-               </div>
-            </div>
-
-            <div className="bg-white p-10 rounded-3xl shadow-sm text-center flex flex-col justify-between">
-               <div>
-                  <div className="flex justify-center gap-1 text-gold/30 mb-6">
-                    {[1,2,3,4,5].map(i => <Star key={i} size={20} />)}
+          <div className="relative group/slider px-4">
+            <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-12 transition-all">
+              {[
+                {
+                  name: "Mohamad R.",
+                  text: "An amazing and clean space! Very good to study/work and just concentrate. Would recommend to everyone! :)",
+                  role: "Verified Local Guide"
+                },
+                {
+                  name: "Rami Jawadi",
+                  text: "A very productive space, I highly recommend it 🎈",
+                  role: "Smart Member"
+                },
+                {
+                  name: "Taha Khouildi",
+                  text: "Amazing atmosphere and top quality service. Best place in Monastir.",
+                  role: "Verified Reviewer"
+                },
+                {
+                  name: "Amine Dabbabi",
+                  text: "A7san blasa trevez fiha fi mestir! Super ambiance et calme absolu.",
+                  role: "Local Guide"
+                },
+                {
+                  name: "Bassem Barka",
+                  text: "Very good experience, highly recommended for productivity boosters.",
+                  role: "Verified Reviewer"
+                },
+                {
+                  name: "Jawher Barhoumi",
+                  text: "Excellent space for productivity and networking with high-level professionals.",
+                  role: "Verified Reviewer"
+                }
+              ].map((rev, idx) => (
+                <div key={idx} className="min-w-[320px] sm:min-w-[400px] snap-center">
+                  <div className="bg-cream/40 p-10 rounded-[3rem] border border-cream/50 h-full flex flex-col justify-between transition-all hover:bg-white hover:shadow-2xl hover:border-gold/30 hover:-translate-y-2 group">
+                    <div>
+                      <div className="flex justify-between items-start mb-8">
+                        <div className="flex gap-1 text-gold">
+                          {[1,2,3,4,5].map(i => <Star key={i} size={16} fill="currentColor" />)}
+                        </div>
+                        <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google" width={40} height={13} className="opacity-40 grayscale group-hover:grayscale-0 transition-all" />
+                      </div>
+                      <p className="text-navy/80 text-lg leading-relaxed italic mb-10 font-light">"{rev.text}"</p>
+                    </div>
+                    
+                    <div className="flex items-center gap-4 border-t border-navy/5 pt-8">
+                      <div className="w-14 h-14 rounded-2xl bg-navy text-gold flex items-center justify-center font-display text-xl font-bold border-4 border-white shadow-lg">
+                        {rev.name.charAt(0)}
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-navy">{rev.name}</h4>
+                        <div className="flex items-center gap-1.5 text-teal text-[10px] font-bold uppercase tracking-widest">
+                          <CheckCircle size={10} /> {rev.role}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <UserPlus className="mx-auto text-cream w-16 h-16 -mt-12 mb-4" fill="currentColor" />
-                  <p className="text-gray-700 font-medium text-lg mt-6">Découvrez notre espace par vous-même !</p>
-               </div>
-               <div className="bg-cream p-4 rounded-xl mt-8">
-                  <p className="text-sm font-medium text-navy/80">Soyez parmi les premiers à laisser votre avis ⭐</p>
-               </div>
+                </div>
+              ))}
+
+              {/* QR Code CTA Card */}
+              <div className="min-w-[300px] sm:min-w-[340px] snap-center">
+                <div className="bg-gold/5 p-8 rounded-[3rem] border-4 border-dashed border-gold/30 h-full flex flex-col items-center justify-center text-center transition-all hover:bg-white hover:shadow-2xl hover:-translate-y-2 group">
+                  <div className="relative mb-6 p-4 bg-white rounded-2xl shadow-xl transition-transform group-hover:rotate-1 group-hover:scale-105">
+                    <img 
+                      src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://search.google.com/local/writereview?placeid=ChIJzZdRQi7Z6IMRaHxtsC2h2dw" 
+                      alt="Review QR Code" 
+                      width={180} 
+                      height={180} 
+                      className="mx-auto"
+                    />
+                  </div>
+                  <h4 className="font-display text-2xl text-navy mb-2">Donnez votre avis</h4>
+                  <p className="text-navy/60 text-sm font-medium mb-6">Scannez ce QR Code <br /> pour nous noter sur Google</p>
+                  <div className="flex gap-1 text-gold">
+                    {[1,2,3,4,5].map(i => <Star key={i} size={18} fill="currentColor" />)}
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Hint for scrolling */}
+            <div className="flex justify-center gap-2 mt-4 text-navy/20">
+              <div className="w-2 h-2 rounded-full bg-teal/40 animate-pulse" />
+              <div className="w-2 h-4 rounded-full bg-navy/10" />
+              <div className="w-2 h-2 rounded-full bg-navy/10" />
             </div>
           </div>
         </div>
