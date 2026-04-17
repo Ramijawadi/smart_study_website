@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans, Playfair_Display } from "next/font/google";
+import { DM_Sans, Playfair_Display, Cairo } from "next/font/google";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -12,9 +12,18 @@ const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
 });
 
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["latin", "arabic"],
+});
+
 export const metadata: Metadata = {
   title: "Smart Study Space | Monastir",
-  description: "Un coworking moderne, calme et inspirant — ouvert 24h/24.",
+  description: "Un coworking moderne, calme et inspirant — ouvert 16h/24.",
+  icons: {
+    icon: "/assets/logosmart1.png",
+    apple: "/assets/logosmart1.png",
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={`${dmSans.variable} ${playfairDisplay.variable} scroll-smooth antialiased`}
+      className={`${dmSans.variable} ${playfairDisplay.variable} ${cairo.variable} scroll-smooth antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-cream text-navy">
         {children}
