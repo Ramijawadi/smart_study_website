@@ -1334,7 +1334,7 @@ export default function Home() {
                        <Instagram size={24} />
                     </a>
                     <a href="https://www.google.com/maps/place/Smart+Study+coworking+space/@35.7630227,10.8042515,184m/data=!3m1!1e3!4m16!1m9!2m8!1sfacult%C3%A9+des+sciences!3m6!1sfacult%C3%A9+des+sciences!2sMonastir,+Tunisia!3s0x130212b61d744f59:0xf284743e1d3e40ef!4m2!1d10.8112885!2d35.7642515!3m5!1s0x83e8d92e425197cd:0xdcd9a12db06d7c68!8m2!3d35.7631445!4d10.8056215!16s%2Fg%2F11ylmc6b62?hl=en&entry=ttu&g_ep=EgoyMDI2MDMyOS4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer" className="w-12 h-12 bg-navy text-white rounded-full flex items-center justify-center hover:bg-teal transition-colors shadow-md">
-                       <Navigation size={24} fill="currentColor" className="ml-1" />
+                       <Navigation size={22} fill="currentColor" />
                     </a>
                  </div>
               </div>
