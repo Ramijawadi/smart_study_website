@@ -413,16 +413,17 @@ export default function Home() {
           </button>
         </div>
 
-        {/* Mobile Menu Overlay - Premium Design */}
-        <div className={`fixed inset-0 bg-navy/98 backdrop-blur-2xl z-[60] flex flex-col transition-all duration-700 md:hidden ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
+        {/* Mobile Menu Overlay - Premium Glass Design */}
+        <div className={`fixed inset-0 bg-navy/70 backdrop-blur-[32px] z-[60] flex flex-col transition-all duration-700 md:hidden ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
+          <div className="absolute inset-0 bg-gradient-to-b from-navy/30 via-navy/50 to-navy/90 -z-10 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold via-teal to-gold" />
           
-          <div className="flex justify-between items-center p-4 sm:p-6 border-b border-white/5">
+          <div className="flex justify-between items-center p-4 sm:p-6 border-b border-white/10">
             <div className="flex items-center gap-2">
-               <Image src="/assets/logosmart1.png" alt="Logo" width={28} height={28} unoptimized />
-               <span className="font-display text-lg font-bold text-white tracking-tight">Smart <span className="text-gold">Study</span></span>
+               <Image src="/assets/logosmart1.png" alt="Logo" width={28} height={28} unoptimized className="drop-shadow-md" />
+               <span className="font-display text-lg font-bold text-white tracking-tight drop-shadow-md">Smart <span className="text-gold">Study</span></span>
             </div>
-            <button onClick={() => setIsMenuOpen(false)} className="bg-white/5 p-2.5 rounded-xl text-white hover:bg-gold hover:text-navy transition-all">
+            <button onClick={() => setIsMenuOpen(false)} className="bg-white/10 p-2.5 rounded-xl text-white hover:bg-gold hover:text-navy transition-all shadow-md">
               <X size={20} />
             </button>
           </div>
@@ -450,14 +451,14 @@ export default function Home() {
                       }
                     }, 300);
                   }}
-                  className="flex items-center justify-between group p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-gold/30 transition-all duration-300 transform active:scale-95"
+                  className="flex items-center justify-between group p-3.5 sm:p-4 rounded-xl bg-white/10 border border-white/10 hover:bg-white/20 hover:border-gold/40 transition-all duration-300 transform active:scale-95 shadow-md backdrop-blur-sm"
                   style={{ transitionDelay: `${idx * 100}ms` }}
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-navy transition-all shadow-sm">
+                    <div className="w-8 h-8 bg-black/20 rounded-lg flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-navy transition-all shadow-inner">
                        {item.icon}
                     </div>
-                    <span className="text-base font-display font-medium text-white/90 group-hover:text-gold transition-colors tracking-wide">
+                    <span className="text-base font-display font-bold text-white group-hover:text-gold transition-colors tracking-wide drop-shadow-md">
                       {item.label}
                     </span>
                   </div>
