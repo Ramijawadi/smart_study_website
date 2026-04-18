@@ -669,7 +669,7 @@ export default function Home() {
       </section>
 
       {/* 5. Spaces Section */}
-      <section id="espaces" className="w-full bg-cream py-32 reveal">
+      <section id="espaces" className="w-full bg-cream py-16 lg:py-32 reveal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-20">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navy/5 text-navy font-bold text-[10px] w-fit tracking-[0.2em] uppercase mb-6">
@@ -788,11 +788,11 @@ export default function Home() {
       </section>
 
       {/* 6. Why Choose Us */}
-      <section id="avantages" className="w-full bg-white py-24 reveal">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 divide-y divide-gray-100 space-y-24">
+      <section id="avantages" className="w-full bg-white py-16 lg:py-24 reveal">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 divide-y divide-gray-100 space-y-16 lg:space-y-24">
           
           {/* Row 1 */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center pt-8">
             <div className="relative aspect-square sm:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
               <Image src="/assets/Cooworking.jpeg" alt={t.advantages.row1.title} fill className="object-cover" unoptimized/>
               <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
@@ -812,7 +812,7 @@ export default function Home() {
           </div>
 
           {/* Row 2 */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center pt-24 pb-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center pt-16 lg:pt-24 pb-8">
             <div className="order-2 lg:order-1">
               <h3 className="font-display text-4xl text-navy mb-6">{t.advantages.row2.title}</h3>
               <div className="w-12 h-1 bg-gold mb-6 rounded-full" />
@@ -843,11 +843,11 @@ export default function Home() {
       </section>
 
       {/* 6.5. Coffee Section */}
-      <section className="w-full bg-cream py-24 relative overflow-hidden reveal">
+      <section className="w-full bg-cream py-16 lg:py-24 relative overflow-hidden reveal">
         <div className="absolute -top-[100px] -right-[100px] w-[300px] h-[300px] rounded-full bg-navy/5 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div>
                  <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-teal shadow-md mb-8">
                     <Coffee size={32} />
@@ -895,9 +895,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="menu" className="w-full bg-white py-32 reveal">
+      <section id="menu" className="w-full bg-white py-16 lg:py-32 reveal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-24">
+          <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
             <span className="text-teal font-bold tracking-[0.3em] uppercase text-xs mb-4 block">{t.menu.badge}</span>
             <h2 className="font-display text-4xl sm:text-6xl text-navy mb-8">{t.menu.title}</h2>
             <div className="w-24 h-1 bg-gold mx-auto mb-8 rounded-full" />
@@ -907,8 +907,8 @@ export default function Home() {
           </div>
 
           {/* Category: Hot Drinks */}
-          <div className="mb-28">
-            <div className="flex items-center gap-4 mb-10 pb-6 border-b border-gray-100">
+          <div className="mb-16 lg:mb-28">
+            <div className="flex items-center gap-4 mb-8 lg:mb-10 pb-6 border-b border-gray-100">
               <div className="w-14 h-14 bg-gradient-to-br from-navy to-navy/80 rounded-2xl flex items-center justify-center text-gold shadow-xl">
                 <Coffee size={28} />
               </div>
@@ -952,7 +952,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-12 lg:gap-y-16">
             {/* Category: Snacks */}
             <div>
               <div className="flex items-center gap-4 mb-8 pb-6 border-b border-gray-100">
@@ -1013,12 +1013,12 @@ export default function Home() {
       </section>
 
       {/* 7. Reel Section */}
-      <section className="w-full bg-navy py-32 text-center relative overflow-hidden reveal">
+      <section className="w-full bg-navy py-16 lg:py-32 text-center relative overflow-hidden reveal">
         <div className="absolute top-0 right-0 w-96 h-96 bg-gold/10 rounded-full blur-[120px] -mr-48 -mt-48" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal/10 rounded-full blur-[120px] -ml-48 -mb-48" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <h2 className="font-display text-4xl sm:text-6xl text-white mb-20 tracking-tight">{t.reel.title[0]} <span className="text-gold italic">{t.reel.title[1]}</span></h2>
+          <h2 className="font-display text-4xl sm:text-6xl text-white mb-12 lg:mb-20 tracking-tight">{t.reel.title[0]} <span className="text-gold italic">{t.reel.title[1]}</span></h2>
           
           <div className="relative w-full h-full lg:w-4/5 mx-auto rounded-[3rem] overflow-hidden shadow-[0_40px_80px_rgba(0,0,0,0.6)] aspect-[14/16] sm:aspect-[21/9] bg-black group border border-white/5">
             <Image 
@@ -1048,9 +1048,9 @@ export default function Home() {
       </section>
 
       {/* 7.5. Pricing Section */}
-      <section id="tarifs" className="w-full bg-white py-32 reveal">
+      <section id="tarifs" className="w-full bg-white py-16 lg:py-32 reveal">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="text-center max-w-3xl mx-auto mb-20">
+           <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
               <span className="text-teal font-bold tracking-[0.2em] uppercase text-sm mb-4 block">{t.pricing.badge}</span>
               <h2 className="font-display text-4xl sm:text-6xl text-navy mb-8">{t.pricing.title}</h2>
               <div className="w-20 h-1 bg-gold mx-auto mb-8 rounded-full" />
@@ -1108,9 +1108,9 @@ export default function Home() {
       </section>
 
       {/* 8. Testimonials - Real Google Reviews Slider */}
-      <section id="temoignages" className="w-full bg-white py-32 reveal overflow-hidden">
+      <section id="temoignages" className="w-full bg-white py-16 lg:py-32 reveal overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
             <div className="flex items-center justify-center gap-2 mb-6 text-navy/40 font-bold uppercase tracking-[0.3em] text-[10px]">
               <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google" width={60} height={20} className="opacity-70" />
               <span>{t.testimonials.badge}</span>
