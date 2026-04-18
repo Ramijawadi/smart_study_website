@@ -450,34 +450,34 @@ export default function Home() {
                       }
                     }, 300);
                   }}
-                  className="flex items-center justify-between group p-6 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-gold/30 transition-all duration-300 transform active:scale-95"
+                  className="flex items-center justify-between group p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-gold/30 transition-all duration-300 transform active:scale-95"
                   style={{ transitionDelay: `${idx * 100}ms` }}
                 >
-                  <div className="flex items-center gap-5">
-                    <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-navy transition-all">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-navy transition-all shadow-sm">
                        {item.icon}
                     </div>
-                    <span className="text-2xl font-display font-medium text-white group-hover:text-gold transition-colors">
+                    <span className="text-lg sm:text-xl font-display font-medium text-white/90 group-hover:text-gold transition-colors tracking-wide">
                       {item.label}
                     </span>
                   </div>
-                  <ChevronRight size={24} className="text-white/20 group-hover:text-gold group-hover:translate-x-1 transition-all" />
+                  <ChevronRight size={20} className="text-white/20 group-hover:text-gold group-hover:translate-x-1 transition-all" />
                 </a>
               ))}
             </div>
           </div>
 
-          <div className="p-8 mt-auto border-t border-white/5 space-y-8">
+          <div className="p-8 mt-auto border-t border-white/5 space-y-6">
             <div className="flex gap-4 justify-center">
                <button 
                  onClick={() => { setLang('fr'); setIsMenuOpen(false); }}
-                 className={`flex-1 py-4 rounded-2xl font-bold transition-all ${lang === 'fr' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'bg-white/5 text-white/40 border border-white/5'}`}
+                 className={`flex-1 py-3.5 rounded-xl font-bold transition-all text-sm ${lang === 'fr' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'bg-white/5 text-white/40 border border-white/5 hover:bg-white/10'}`}
                >
                  FR
                </button>
                <button 
                  onClick={() => { setLang('tn'); setIsMenuOpen(false); }}
-                 className={`flex-1 py-4 rounded-2xl font-bold transition-all ${lang === 'tn' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'bg-white/5 text-white/40 border border-white/5'}`}
+                 className={`flex-1 py-3.5 rounded-xl font-bold transition-all text-sm ${lang === 'tn' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'bg-white/5 text-white/40 border border-white/5 hover:bg-white/10'}`}
                >
                  TN
                </button>
@@ -486,9 +486,9 @@ export default function Home() {
             <a 
               href="https://wa.me/"
               onClick={() => setIsMenuOpen(false)}
-              className="flex items-center justify-center gap-3 w-full bg-white text-navy hover:bg-gold py-5 rounded-2xl font-bold text-xl transition-all shadow-2xl active:scale-95"
+              className="flex items-center justify-center gap-2.5 w-full bg-white text-navy hover:bg-gold py-4 rounded-xl font-bold text-base transition-all shadow-xl active:scale-95"
             >
-              <WhatsappIcon size={24} /> {t.contact.cta_reserver}
+              <WhatsappIcon size={20} /> {t.contact.cta_reserver}
             </a>
           </div>
 
