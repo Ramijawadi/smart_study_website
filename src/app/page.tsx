@@ -96,6 +96,15 @@ export default function Home() {
     return () => window.removeEventListener('resize', checkScroll);
   }, [dynamicReviews]);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => { document.body.style.overflow = 'unset'; };
+  }, [isMenuOpen]);
+
   const scrollSlider = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
       const scrollAmount = 420; // card width + gap
@@ -111,6 +120,7 @@ export default function Home() {
     fr: {
       rtl: false,
       font: '',
+      currency: "DT",
       nav: { services: "Services", spaces: "Espaces", pricing: "Tarifs", menu: "Menu", contact: "Contact" },
       hero: { badge: "Visez l'excellence", main: "Votre espace de travail idéal à Monastir", desc: "Un coworking moderne, calme et inspirant — ouvert 16h/24h (de 8h à 00h) pour libérer votre créativité et booster votre concentration.", cta_primary: "Découvrir nos espaces", cta_secondary: "Découvrez nos Tarifs", cta_visit: "Réserver une visite" },
       stats: { members: "Membres Actifs", hours: "Horaires Ouverts", spaces: "Zones Disponibles", wifi: "WiFi Ultra-Rapide" },
@@ -160,6 +170,7 @@ export default function Home() {
     tn: {
       rtl: true,
       font: 'font-cairo',
+      currency: "د.ت",
       nav: { services: "الخدمات", spaces: "بلايصنا", pricing: "الأسوام", menu: "الكاتالوج", contact: "اتصل بينا" },
       hero: { badge: "السعي نحو التميز", main: "أحسن بلاصة تقرا وتخدم فيها في مستير", desc: "فضاء عمل عصري، هادئ ومحفز — محلول 16 ساعة في النهار باش تبدع وتركز في خدمتك.", cta_primary: "شوف بلايصنا", cta_secondary: "شوف الأسوام", cta_visit: "قيد لينا بلاصة" },
       stats: { members: "أعضاء مسجلين", hours: "نحلوا ديما", spaces: "بلايص القراية", wifi: "كونكسيون طيارة" },
@@ -363,6 +374,10 @@ export default function Home() {
                   <a 
                     key={idx}
                     href={href} 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                     className={`text-sm font-bold tracking-wide uppercase transition-all hover:text-gold relative group ${activePath === href.replace('#', '') ? 'text-gold' : (scrolled ? 'text-navy/70' : 'text-white/70')}`}
                   >
                     {label}
@@ -424,7 +439,17 @@ export default function Home() {
                 <a 
                   key={idx}
                   href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsMenuOpen(false);
+                    document.body.style.overflow = 'unset';
+                    setTimeout(() => {
+                      const target = document.querySelector(item.href);
+                      if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }, 300);
+                  }}
                   className="flex items-center justify-between group p-6 rounded-3xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-gold/30 transition-all duration-300 transform active:scale-95"
                   style={{ transitionDelay: `${idx * 100}ms` }}
                 >
@@ -883,62 +908,74 @@ export default function Home() {
 
           {/* Category: Hot Drinks */}
           <div className="mb-28">
-            <div className="flex items-center gap-4 mb-12 border-b border-gray-100 pb-8">
-              <div className="w-12 h-12 bg-navy rounded-2xl flex items-center justify-center text-gold shadow-lg">
-                <Coffee size={24} />
+            <div className="flex items-center gap-4 mb-10 pb-6 border-b border-gray-100">
+              <div className="w-14 h-14 bg-gradient-to-br from-navy to-navy/80 rounded-2xl flex items-center justify-center text-gold shadow-xl">
+                <Coffee size={28} />
               </div>
-              <h3 className="font-display text-3xl text-navy font-bold">{t.menu.cat_hot}</h3>
+              <h3 className="font-display text-4xl text-navy font-bold">{t.menu.cat_hot}</h3>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-4">
               {[
-                { name: "Americano", price: "2.500 / 3.000" },
-                { name: "Cappuccino", price: "3.000 / 3.500", bestseller: true },
-                { name: "Cappuccino Plus", price: "3.500 / 4.000" },
-                { name: "Espresso", price: "2.200 / 2.700" },
-                { name: "Café Crème", price: "2.800 / 3.300" },
-                { name: "Café au Chocolat", price: "3.000 / 3.500" },
-                { name: "Latte Macchiato", price: "3.500 / 4.000" },
-                { name: "Double Espresso", price: "3.000 / 3.500" },
-                { name: "Chocolat Chaud (Lait)", price: "3.500 / 4.000" },
-                { name: "Chocolat Chaud (Sans Lait)", price: "3.300 / 3.800" },
-                { name: "Golden Coffee", price: "2.200" },
-                { name: "Thé Kyufi", price: "1.800" }
+                { name: "Americano", price: "2.500 / 3.000", desc: "Espresso allongé à l'eau chaude" },
+                { name: "Cappuccino", price: "3.000 / 3.500", bestseller: true, desc: "Espresso, lait chaud et mousse de lait" },
+                { name: "Cappuccino Plus", price: "3.500 / 4.000", desc: "Version généreuse du cappuccino" },
+                { name: "Espresso", price: "2.200 / 2.700", desc: "Café court et intense" },
+                { name: "Café Crème", price: "2.800 / 3.300", desc: "Double espresso et crème de lait" },
+                { name: "Café au Chocolat", price: "3.000 / 3.500", desc: "L'alliance parfaite café et cacao" },
+                { name: "Latte Macchiato", price: "3.500 / 4.000", desc: "Lait chaud délicatement taché par l'espresso" },
+                { name: "Double Espresso", price: "3.000 / 3.500", desc: "Pour un boost d'énergie maximal" },
+                { name: "Chocolat Chaud (Lait)", price: "3.500 / 4.000", desc: "Onctueux et réconfortant" },
+                { name: "Chocolat Chaud (Sans Lait)", price: "3.300 / 3.800", desc: "Le goût pur du cacao" },
+                { name: "Golden Coffee", price: "2.200", desc: "Spécialité maison" },
+                { name: "Thé Kyufi", price: "1.800", desc: "Infusion de thé traditionnelle" }
               ].map((item, idx) => (
-                <div key={idx} className="flex justify-between items-baseline group border-b border-gray-50 pb-4 transition-all hover:pl-2">
-                  <div className="flex items-center gap-3">
-                    <span className="text-lg font-medium text-navy group-hover:text-teal transition-colors">{item.name}</span>
-                    {item.bestseller && (
-                      <span className="text-[10px] bg-gold/20 text-gold font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter">{t.menu.bestseller}</span>
-                    )}
+                <div key={idx} className="flex items-center justify-between group p-5 -mx-5 rounded-3xl transition-all duration-300 hover:bg-cream/40 cursor-pointer">
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-3">
+                      <span className="text-xl font-bold text-navy group-hover:text-teal transition-colors flex items-center gap-2">
+                        {item.name}
+                      </span>
+                      {item.bestseller && (
+                        <span className="text-[10px] bg-gradient-to-r from-gold to-yellow-500 text-white font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-sm">
+                          {t.menu.bestseller}
+                        </span>
+                      )}
+                    </div>
+                    <span className="text-sm text-navy/40 font-medium">{item.desc}</span>
                   </div>
-                  <div className="flex-grow border-b border-dotted border-gray-300 mx-4 opacity-50" />
-                  <span className="text-teal font-bold font-display whitespace-nowrap">{item.price} <span className="text-[10px] uppercase opacity-60">DT</span></span>
+                  <div className="bg-white px-4 py-2 rounded-2xl shadow-sm border border-gray-100 group-hover:border-teal/20 group-hover:shadow-md transition-all">
+                    <span className="text-lg font-bold text-teal whitespace-nowrap">{item.price} <span className="text-xs uppercase opacity-70">{t.currency}</span></span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-16">
             {/* Category: Snacks */}
             <div>
-              <div className="flex items-center gap-4 mb-10 border-b border-gray-100 pb-8">
-                <div className="w-12 h-12 bg-gold/10 rounded-2xl flex items-center justify-center text-gold shadow-sm">
-                  <Star size={24} />
+              <div className="flex items-center gap-4 mb-8 pb-6 border-b border-gray-100">
+                <div className="w-14 h-14 bg-gold/10 rounded-2xl flex items-center justify-center text-gold shadow-sm">
+                  <Star size={28} />
                 </div>
-                <h3 className="font-display text-3xl text-navy font-bold">{t.menu.cat_snacks}</h3>
+                <h3 className="font-display text-4xl text-navy font-bold">{t.menu.cat_snacks}</h3>
               </div>
-              <div className="space-y-6">
+              <div className="space-y-2">
                 {[
-                  { name: "Croissant Snapy", price: "1.500" },
-                  { name: "Browniz", price: "1.200" },
-                  { name: "Tigato", price: "2.200" },
-                  { name: "D'croc", price: "2.200" }
+                  { name: "Croissant Snapy", price: "1.500", desc: "Viennoiserie pur beurre" },
+                  { name: "Browniz", price: "1.200", desc: "Chocolat et éclats de noix" },
+                  { name: "Tigato", price: "2.200", desc: "Gâteau maison gourmand" },
+                  { name: "D'croc", price: "2.200", desc: "Snack croustillant salé" }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-baseline group border-b border-gray-50 pb-4 transition-all hover:pl-2">
-                    <span className="text-lg font-medium text-navy group-hover:text-gold transition-colors">{item.name}</span>
-                    <div className="flex-grow border-b border-dotted border-gray-300 mx-4 opacity-50" />
-                    <span className="text-teal font-bold font-display whitespace-nowrap">{item.price} <span className="text-[10px] uppercase opacity-60">DT</span></span>
+                  <div key={idx} className="flex items-center justify-between group p-5 -mx-5 rounded-3xl transition-all duration-300 hover:bg-gold/5 cursor-pointer">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-xl font-bold text-navy group-hover:text-gold transition-colors">{item.name}</span>
+                      <span className="text-sm text-navy/40 font-medium">{item.desc}</span>
+                    </div>
+                    <div className="bg-white px-4 py-2 rounded-2xl shadow-sm border border-gray-100 group-hover:border-gold/20 group-hover:shadow-md transition-all">
+                      <span className="text-lg font-bold text-gold whitespace-nowrap">{item.price} <span className="text-xs uppercase opacity-70">{t.currency}</span></span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -946,23 +983,27 @@ export default function Home() {
 
             {/* Category: Refreshments */}
             <div>
-              <div className="flex items-center gap-4 mb-10 border-b border-gray-100 pb-8">
-                <div className="w-12 h-12 bg-teal/10 rounded-2xl flex items-center justify-center text-teal shadow-sm">
-                  <Navigation size={24} />
+              <div className="flex items-center gap-4 mb-8 pb-6 border-b border-gray-100">
+                <div className="w-14 h-14 bg-teal/10 rounded-2xl flex items-center justify-center text-teal shadow-sm">
+                  <Navigation size={28} />
                 </div>
-                <h3 className="font-display text-3xl text-navy font-bold">Rafraîchissements</h3>
+                <h3 className="font-display text-4xl text-navy font-bold">{t.menu.cat_refresh}</h3>
               </div>
-              <div className="space-y-6">
+              <div className="space-y-2">
                 {[
-                  { name: "Eau Safia 1.5L", price: "1.500" },
-                  { name: "Eau Safia 0.5L", price: "0.800" },
-                  { name: "Jus Oh!", price: "1.800" },
-                  { name: "Tropico", price: "1.200" }
+                  { name: "Eau Safia 1.5L", price: "1.500", desc: "Bouteille grand format" },
+                  { name: "Eau Safia 0.5L", price: "0.800", desc: "Bouteille individuelle" },
+                  { name: "Jus Oh!", price: "1.800", desc: "Jus de fruits varié" },
+                  { name: "Tropico", price: "1.200", desc: "Boisson rafraîchissante" }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-baseline group border-b border-gray-50 pb-4 transition-all hover:pl-2">
-                    <span className="text-lg font-medium text-navy group-hover:text-teal transition-colors">{item.name}</span>
-                    <div className="flex-grow border-b border-dotted border-gray-300 mx-4 opacity-50" />
-                    <span className="text-teal font-bold font-display whitespace-nowrap">{item.price} <span className="text-[10px] uppercase opacity-60">DT</span></span>
+                  <div key={idx} className="flex items-center justify-between group p-5 -mx-5 rounded-3xl transition-all duration-300 hover:bg-teal/5 cursor-pointer">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-xl font-bold text-navy group-hover:text-teal transition-colors">{item.name}</span>
+                      <span className="text-sm text-navy/40 font-medium">{item.desc}</span>
+                    </div>
+                    <div className="bg-white px-4 py-2 rounded-2xl shadow-sm border border-gray-100 group-hover:border-teal/20 group-hover:shadow-md transition-all">
+                      <span className="text-lg font-bold text-teal whitespace-nowrap">{item.price} <span className="text-xs uppercase opacity-70">{t.currency}</span></span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -1037,13 +1078,13 @@ export default function Home() {
                   <div className="flex items-baseline gap-1 mb-2">
                     {plan.oldPrice && (
                       <span className={`text-lg line-through opacity-50 mr-2 ${plan.highlight ? 'text-white' : 'text-navy'}`}>
-                        {plan.oldPrice}DT
+                        {plan.oldPrice}{t.currency}
                       </span>
                     )}
                     <span className={`text-5xl font-bold font-display ${plan.highlight ? 'text-gold' : 'text-navy'}`}>
                       {plan.price}
                     </span>
-                    <span className={`text-xl font-bold ${plan.highlight ? 'text-gold' : 'text-navy'}`}>DT</span>
+                    <span className={`text-xl font-bold ${plan.highlight ? 'text-gold' : 'text-navy'}`}>{t.currency}</span>
                   </div>
                   <div className="mb-8">
                     <span className={`text-sm ${plan.highlight ? 'text-white/50' : 'text-gray-500'}`}>
