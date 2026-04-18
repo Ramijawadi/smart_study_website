@@ -417,24 +417,24 @@ export default function Home() {
         <div className={`fixed inset-0 bg-navy/98 backdrop-blur-2xl z-[60] flex flex-col transition-all duration-700 md:hidden ${isMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gold via-teal to-gold" />
           
-          <div className="flex justify-between items-center p-8 border-b border-white/5">
+          <div className="flex justify-between items-center p-4 sm:p-6 border-b border-white/5">
             <div className="flex items-center gap-2">
-               <Image src="/assets/logosmart1.png" alt="Logo" width={32} height={32} unoptimized />
-               <span className="font-display text-xl font-bold text-white tracking-tight">Smart <span className="text-gold">Study</span></span>
+               <Image src="/assets/logosmart1.png" alt="Logo" width={28} height={28} unoptimized />
+               <span className="font-display text-lg font-bold text-white tracking-tight">Smart <span className="text-gold">Study</span></span>
             </div>
-            <button onClick={() => setIsMenuOpen(false)} className="bg-white/5 p-3 rounded-2xl text-white hover:bg-gold hover:text-navy transition-all">
-              <X size={24} />
+            <button onClick={() => setIsMenuOpen(false)} className="bg-white/5 p-2.5 rounded-xl text-white hover:bg-gold hover:text-navy transition-all">
+              <X size={20} />
             </button>
           </div>
           
-          <div className="flex-grow flex flex-col justify-center px-8 py-12">
-            <div className="flex flex-col gap-4">
+          <div className="flex-grow flex flex-col justify-center px-4 sm:px-6 py-4">
+            <div className="flex flex-col gap-2.5">
               {[
-                { key: 'services', label: t.nav.services, href: "#avantages", icon: <Star size={20} /> },
-                { key: 'spaces', label: t.nav.spaces, href: "#espaces", icon: <Users size={20} /> },
-                { key: 'pricing', label: t.nav.pricing, href: "#tarifs", icon: <CreditCard size={20} /> },
-                { key: 'menu', label: t.nav.menu, href: "#menu", icon: <Coffee size={20} /> },
-                { key: 'contact', label: t.nav.contact, href: "#contact", icon: <MapPin size={20} /> }
+                { key: 'services', label: t.nav.services, href: "#avantages", icon: <Star size={16} /> },
+                { key: 'spaces', label: t.nav.spaces, href: "#espaces", icon: <Users size={16} /> },
+                { key: 'pricing', label: t.nav.pricing, href: "#tarifs", icon: <CreditCard size={16} /> },
+                { key: 'menu', label: t.nav.menu, href: "#menu", icon: <Coffee size={16} /> },
+                { key: 'contact', label: t.nav.contact, href: "#contact", icon: <MapPin size={16} /> }
               ].map((item, idx) => (
                 <a 
                   key={idx}
@@ -450,34 +450,34 @@ export default function Home() {
                       }
                     }, 300);
                   }}
-                  className="flex items-center justify-between group p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-gold/30 transition-all duration-300 transform active:scale-95"
+                  className="flex items-center justify-between group p-3.5 sm:p-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-gold/30 transition-all duration-300 transform active:scale-95"
                   style={{ transitionDelay: `${idx * 100}ms` }}
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-navy transition-all shadow-sm">
+                    <div className="w-8 h-8 bg-white/5 rounded-lg flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-navy transition-all shadow-sm">
                        {item.icon}
                     </div>
-                    <span className="text-lg sm:text-xl font-display font-medium text-white/90 group-hover:text-gold transition-colors tracking-wide">
+                    <span className="text-base font-display font-medium text-white/90 group-hover:text-gold transition-colors tracking-wide">
                       {item.label}
                     </span>
                   </div>
-                  <ChevronRight size={20} className="text-white/20 group-hover:text-gold group-hover:translate-x-1 transition-all" />
+                  <ChevronRight size={18} className="text-white/20 group-hover:text-gold group-hover:translate-x-1 transition-all" />
                 </a>
               ))}
             </div>
           </div>
 
-          <div className="p-8 mt-auto border-t border-white/5 space-y-6">
+          <div className="p-4 sm:p-6 mt-auto border-t border-white/5 space-y-4">
             <div className="flex gap-4 justify-center">
                <button 
                  onClick={() => { setLang('fr'); setIsMenuOpen(false); }}
-                 className={`flex-1 py-3.5 rounded-xl font-bold transition-all text-sm ${lang === 'fr' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'bg-white/5 text-white/40 border border-white/5 hover:bg-white/10'}`}
+                 className={`flex-1 py-3.5 rounded-xl font-bold transition-all text-xs ${lang === 'fr' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'bg-white/5 text-white/40 border border-white/5 hover:bg-white/10'}`}
                >
                  FR
                </button>
                <button 
                  onClick={() => { setLang('tn'); setIsMenuOpen(false); }}
-                 className={`flex-1 py-3.5 rounded-xl font-bold transition-all text-sm ${lang === 'tn' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'bg-white/5 text-white/40 border border-white/5 hover:bg-white/10'}`}
+                 className={`flex-1 py-3.5 rounded-xl font-bold transition-all text-xs ${lang === 'tn' ? 'bg-gold text-navy shadow-lg shadow-gold/20' : 'bg-white/5 text-white/40 border border-white/5 hover:bg-white/10'}`}
                >
                  TN
                </button>
@@ -486,9 +486,9 @@ export default function Home() {
             <a 
               href="https://wa.me/"
               onClick={() => setIsMenuOpen(false)}
-              className="flex items-center justify-center gap-2.5 w-full bg-white text-navy hover:bg-gold py-4 rounded-xl font-bold text-base transition-all shadow-xl active:scale-95"
+              className="flex items-center justify-center gap-2 w-full bg-white text-navy hover:bg-gold py-3.5 rounded-xl font-bold text-sm transition-all shadow-xl active:scale-95"
             >
-              <WhatsappIcon size={20} /> {t.contact.cta_reserver}
+              <WhatsappIcon size={18} /> {t.contact.cta_reserver}
             </a>
           </div>
 
