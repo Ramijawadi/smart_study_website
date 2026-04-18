@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+
 const PLACE_ID = 'ChIJzZdRQi7Z6lMRaHxtsC2h2dw';
-const API_KEY = 'AIzaSyDibmUvLFxqRU8B9XN882lkqPZqdOIFdkI';
+const API_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
 export async function GET() {
   try {
