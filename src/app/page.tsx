@@ -79,6 +79,23 @@ export default function Home() {
   const [ratingData, setRatingData] = useState<{ rating: number, total: number } | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScroll = () => {
+    if (sliderRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = sliderRef.current;
+      setCanScrollLeft(scrollLeft > 20);
+      setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 20);
+    }
+  };
+
+  useEffect(() => {
+    checkScroll();
+    window.addEventListener('resize', checkScroll);
+    return () => window.removeEventListener('resize', checkScroll);
+  }, [dynamicReviews]);
+
   const scrollSlider = (direction: 'left' | 'right') => {
     if (sliderRef.current) {
       const scrollAmount = 420; // card width + gap
@@ -783,10 +800,19 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            <div className="order-1 lg:order-2 relative aspect-square sm:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
-               <Image src="/assets/bureauSmartStudy.jpg" alt={t.advantages.row2.title} fill className="object-cover" unoptimized/>
-               <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
-            </div>
+  <div className="order-1 lg:order-2 w-fit rounded-3xl overflow-hidden shadow-2xl group">
+  <Image 
+    src="/assets/bureaujdid.jpeg" 
+    alt={t.advantages.row2.title} 
+    width={0}
+    height={0}
+    sizes="(max-width: 120rem) 120rem, 120rem"
+    className="w-full h-auto max-h-[420px] object-contain transition-all duration-700 group-hover:scale-105 filter contrast-[1.1] brightness-[1.05] saturate-[1.1]" 
+    quality={100}
+    priority
+  />
+  <div className="absolute inset-0 bg-gradient-to-t from-navy/30 via-transparent to-transparent opacity-50" />
+</div>
           </div>
         </div>
       </section>
@@ -1084,13 +1110,13 @@ export default function Home() {
             <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between z-10 pointer-events-none px-2 sm:px-0">
               <button 
                 onClick={() => scrollSlider('left')}
-                className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md shadow-xl border border-gray-100 flex items-center justify-center text-navy hover:bg-gold hover:text-white transition-all pointer-events-auto -translate-x-4 md:-translate-x-6 opacity-0 group-hover/slider:opacity-100 hidden sm:flex"
+                className={`w-12 h-12 rounded-full bg-white/90 backdrop-blur-md shadow-xl border border-gray-100 flex items-center justify-center text-navy hover:bg-gold hover:text-white transition-all pointer-events-auto -translate-x-4 md:-translate-x-6 hidden sm:flex ${!canScrollLeft ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
               >
                 <ChevronLeft size={24} />
               </button>
               <button 
                 onClick={() => scrollSlider('right')}
-                className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md shadow-xl border border-gray-100 flex items-center justify-center text-navy hover:bg-gold hover:text-white transition-all pointer-events-auto translate-x-4 md:translate-x-6 opacity-0 group-hover/slider:opacity-100 hidden sm:flex"
+                className={`w-12 h-12 rounded-full bg-white/90 backdrop-blur-md shadow-xl border border-gray-100 flex items-center justify-center text-navy hover:bg-gold hover:text-white transition-all pointer-events-auto translate-x-4 md:translate-x-6 hidden sm:flex ${!canScrollRight ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
               >
                 <ChevronRight size={24} />
               </button>
@@ -1098,6 +1124,7 @@ export default function Home() {
 
             <div 
               ref={sliderRef}
+              onScroll={checkScroll}
               className="flex gap-6 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-12 transition-all scroll-px-4"
             >
               {reviewsLoading ? (
@@ -1131,47 +1158,62 @@ export default function Home() {
                 ))
               ) : (
                 dynamicReviews.map((rev, idx) => (
-                  <div key={idx} className="min-w-[320px] sm:min-w-[400px] snap-center">
-                    <div className="bg-cream/40 p-10 rounded-[3rem] border border-cream/50 h-full flex flex-col justify-between transition-all hover:bg-white hover:shadow-2xl hover:border-gold/30 hover:-translate-y-2 group">
-                      <div>
-                        <div className="flex justify-between items-start mb-8">
-                          <div className="flex gap-1 text-gold">
+                  <div key={idx} className="min-w-[320px] sm:min-w-[420px] snap-center py-10">
+                    <div className="bg-white/80 backdrop-blur-xl p-8 sm:p-10 rounded-[3.5rem] border border-white shadow-[0_20px_50px_-15px_rgba(0,0,0,0.08)] h-full flex flex-col justify-between transition-all duration-500 hover:shadow-[0_40px_100px_-20px_rgba(255,190,0,0.15)] hover:-translate-y-3 hover:border-gold/30 group relative overflow-hidden">
+                      {/* Decorative Background Quote Icon */}
+                      <div className="absolute top-8 right-8 text-gold/5 pointer-events-none group-hover:text-gold/10 transition-colors">
+                        <Quote size={120} />
+                      </div>
+
+                      <div className="relative z-10">
+                        <div className="flex justify-between items-start mb-10">
+                          <div className="flex gap-1">
                             {[1, 2, 3, 4, 5].map((star) => (
                               <Star 
                                 key={star} 
-                                size={16} 
+                                size={18} 
                                 fill={star <= rev.rating ? "currentColor" : "none"} 
-                                className={star <= rev.rating ? "text-gold" : "text-gray-200"}
+                                className={star <= rev.rating ? "text-amber-400" : "text-gray-200"}
                               />
                             ))}
                           </div>
-                          <img 
-                            src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
-                            alt="Google" 
-                            width={40} 
-                            height={13} 
-                            className="opacity-40 grayscale group-hover:grayscale-0 transition-all shadow-sm rounded-sm" 
-                          />
+                          <div className="bg-white/50 backdrop-blur-md px-3 py-1.5 rounded-2xl border border-gray-100 flex items-center gap-2 shadow-sm">
+                             <img 
+                                src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" 
+                                alt="Google" 
+                                width={36} 
+                                height={12} 
+                                className="grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all" 
+                             />
+                          </div>
                         </div>
-                        <p className="text-navy/80 text-lg leading-relaxed italic mb-10 font-light line-clamp-4">&quot;{rev.text}&quot;</p>
+                        <div className="relative mb-12">
+                          <span className="absolute -top-6 -left-2 text-6xl text-gold/20 font-serif leading-none">&ldquo;</span>
+                          <p className="text-navy/90 text-xl leading-relaxed italic font-display font-light line-clamp-4 relative z-10 pl-4">
+                            {rev.text}
+                          </p>
+                        </div>
                       </div>
                       
-                      <div className="flex items-center gap-4 border-t border-navy/5 pt-8">
-                        {rev.photo ? (
-                          <div className="w-14 h-14 rounded-2xl overflow-hidden border-4 border-white shadow-lg">
-                            <img src={rev.photo} alt={rev.name} className="w-full h-full object-cover" />
-                          </div>
-                        ) : (
-                          <div className="w-14 h-14 rounded-2xl bg-navy text-gold flex items-center justify-center font-display text-xl font-bold border-4 border-white shadow-lg">
-                            {rev.name.charAt(0)}
-                          </div>
-                        )}
+                      <div className="flex items-center gap-5 border-t border-gray-100 pt-8 relative z-10">
+                        <div className="relative">
+                          {rev.photo ? (
+                            <div className="w-16 h-16 rounded-2xl overflow-hidden border-4 border-white shadow-xl">
+                              <img src={rev.photo} alt={rev.name} className="w-full h-full object-cover" />
+                            </div>
+                          ) : (
+                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-navy to-navy/80 text-gold flex items-center justify-center font-display text-2xl font-bold border-4 border-white shadow-xl">
+                              {rev.name.charAt(0)}
+                            </div>
+                          )}
+                          <div className="absolute -bottom-1 -right-1 bg-green-500 w-4 h-4 rounded-full border-2 border-white shadow-sm" />
+                        </div>
                         <div>
-                          <h4 className="font-bold text-navy truncate max-w-[150px]">{rev.name}</h4>
-                          <div className="flex items-center gap-1.5 text-teal text-[10px] font-bold uppercase tracking-widest">
-                            <CheckCircle size={10} /> {rev.role || "Verified Reviewer"}
+                          <h4 className="font-bold text-navy text-lg truncate max-w-[180px]">{rev.name}</h4>
+                          <div className="flex items-center gap-1.5 text-teal text-[11px] font-bold uppercase tracking-widest">
+                            <CheckCircle size={12} /> {rev.role || "Verified Local Guide"}
                           </div>
-                          <p className="text-navy/30 text-[10px] mt-0.5 font-medium">{rev.date}</p>
+                          <p className="text-navy/40 text-[10px] mt-1 font-medium">{rev.date} • Monastir</p>
                         </div>
                       </div>
                     </div>
